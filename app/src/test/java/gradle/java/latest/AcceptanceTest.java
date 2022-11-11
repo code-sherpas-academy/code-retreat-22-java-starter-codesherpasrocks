@@ -12,7 +12,9 @@ public class AcceptanceTest {
 
     String expectedResponse = "3,4,NORTH";
     MarsRover marsRover = new MarsRover();
-    CommandExecutor commandExecutor = new CommandExecutor(marsRover);
+    CommandInterpreter commandInterpreter = new CommandInterpreter();
+    OutputFormatter outputFormatter = new OutputFormatter();
+    CommandExecutor commandExecutor = new CommandExecutor(outputFormatter, commandInterpreter, marsRover);
     String response = commandExecutor.execute("FLFL");
 
 
