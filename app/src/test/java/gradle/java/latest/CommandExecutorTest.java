@@ -4,26 +4,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class CommandExecutorTest {
 
   @Test
-  void executeCommands(){
-    String expectedOutput = "1,1,NORTH";
-    String commands = "F";
-    OutputFormatter outputFormatter = mock(OutputFormatter.class);
+  void executeSingleCommand(){
+    //ARRANGE
+    String inputCommand = "F";
+    Command command = Command.FORWARD;
     CommandInterpreter commandInterpreter = mock(CommandInterpreter.class);
+    when(commandInterpreter.execute(inputCommand)).thenReturn(command);
+
+    Position position = new Position();
     MarsRover marsRover = mock(MarsRover.class);
+    when(marsRover.execute(command)).thenReturn(position);
+
+    OutputFormatter outputFormatter = mock(OutputFormatter.class);
+
+    //ACT
     CommandExecutor commandExecutor = new CommandExecutor(outputFormatter, commandInterpreter, marsRover);
-    List<Command> listOfCommands = Arrays.asList(Command.FORWARD);
-    when(commandInterpreter.execute(commands)).thenReturn(listOfCommands);
-    when(marsRover.execute(listOfCommands)).thenReturn();
+    String output = commandExecutor.execute(inputCommand);
 
-    String output = commandExecutor.execute(commands);
-
+    //ASSERT
+    String expectedOutput = "1,1,NORTH";
     assertThat(output).isEqualTo(expectedOutput);
   }
 }
