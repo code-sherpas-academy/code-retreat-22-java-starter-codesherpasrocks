@@ -40,15 +40,15 @@ The output for each rover should be its final co-ordinates and heading.
 
 1 2 N
 
-LMLMLMLMM
+LFLFLFLFF
 
-3 3 EAST
+3 3 E
 
-MMRMMRMRRM
+FFRFFRFRRF
 
 ### Expected Output:
 
-1 3 N
+1 3 NORTH
 
 5 1 EAST
 
