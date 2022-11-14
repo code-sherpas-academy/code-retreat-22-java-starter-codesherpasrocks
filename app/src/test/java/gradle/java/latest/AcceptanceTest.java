@@ -10,14 +10,14 @@ public class AcceptanceTest {
   @Test
   void marsRoverExecuteForwardCommand() {
     // Initial position for the rover is 0,0,NORTH
-    String expectedResponse = "0,1,NORTH";
-    MarsRover marsRover = new MarsRover();
     CommandInterpreter commandInterpreter = new CommandInterpreter();
+    MarsRover marsRover = new MarsRover();
     OutputFormatter outputFormatter = new OutputFormatter();
-    CommandExecutor commandExecutor = new CommandExecutor(outputFormatter, commandInterpreter, marsRover);
+    CommandExecutor commandExecutor = new CommandExecutor(commandInterpreter, marsRover, outputFormatter);
 
     String response = commandExecutor.execute("F");
 
+    String expectedResponse = "0,1,NORTH";
     assertThat(response).isEqualTo(expectedResponse);
   }
 }

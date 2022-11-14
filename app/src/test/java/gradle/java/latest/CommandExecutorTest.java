@@ -14,20 +14,21 @@ class CommandExecutorTest {
     String inputCommand = "F";
     Command command = Command.FORWARD;
     CommandInterpreter commandInterpreter = mock(CommandInterpreter.class);
-    when(commandInterpreter.execute(inputCommand)).thenReturn(command);
+    when(commandInterpreter.parse(inputCommand)).thenReturn(command);
 
-    Position position = new Position();
+    Position position = new Position(1, 1, "NORTH");
     MarsRover marsRover = mock(MarsRover.class);
     when(marsRover.execute(command)).thenReturn(position);
 
+    String expectedOutput = "1,1,NORTH";
     OutputFormatter outputFormatter = mock(OutputFormatter.class);
+    when(outputFormatter.format(position)).thenReturn(expectedOutput);
 
     //ACT
-    CommandExecutor commandExecutor = new CommandExecutor(outputFormatter, commandInterpreter, marsRover);
+    CommandExecutor commandExecutor = new CommandExecutor(commandInterpreter, marsRover, outputFormatter);
     String output = commandExecutor.execute(inputCommand);
 
     //ASSERT
-    String expectedOutput = "1,1,NORTH";
     assertThat(output).isEqualTo(expectedOutput);
   }
 }

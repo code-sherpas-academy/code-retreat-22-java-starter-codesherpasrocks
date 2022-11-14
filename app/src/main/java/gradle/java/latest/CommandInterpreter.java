@@ -2,7 +2,7 @@ package gradle.java.latest;
 
 public class CommandInterpreter {
 
-  public Command execute(String inputCommand) {
+  public Command parse(String inputCommand) {
     throw new UnsupportedOperationException();
   }
 }
