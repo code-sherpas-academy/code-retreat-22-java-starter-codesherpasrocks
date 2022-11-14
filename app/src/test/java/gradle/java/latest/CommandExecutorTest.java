@@ -20,6 +20,7 @@ class CommandExecutorTest {
     CommandExecutor commandExecutor = new CommandExecutor(outputFormatter, commandInterpreter, marsRover);
     List<Command> listOfCommands = Arrays.asList(Command.FORWARD);
     when(commandInterpreter.execute(commands)).thenReturn(listOfCommands);
+    when(marsRover.execute(listOfCommands)).thenReturn();
 
     String output = commandExecutor.execute(commands);
 
